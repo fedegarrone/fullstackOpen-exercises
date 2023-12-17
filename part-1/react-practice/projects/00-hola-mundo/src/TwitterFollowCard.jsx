@@ -1,8 +1,9 @@
 import { useState } from "react";
 import "./TwitterFollowCard.css";
 
-export function TwitterFollowCard({ formatUserName, children, userName = 'unknown', initialIsFollowing}) {
+export function TwitterFollowCard({children, userName = 'unknown', initialIsFollowing}) {
   const imgSrc = `https://unavatar.io/${userName}`;
+  const formatUserName = (userName) => `@${userName}`;
   const [isFollowing, setIsFollowing] = useState(initialIsFollowing);
 
   const handleClick = () => {
