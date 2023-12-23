@@ -3,6 +3,7 @@ import confetti from 'canvas-confetti'
 import { TURNS,WINNER_COMBOS } from "./constants/constants.js";
 import { Square } from "./components/Square.jsx";
 import { WinnerModal } from "./components/WinnerModal.jsx";
+import { ResetButton } from "./components/ResetButton.jsx";
 
 
 function App() {
@@ -59,7 +60,7 @@ function App() {
   return (
     <main className="board">
       <h1>Tic Tac Toe</h1>
-      <button onClick={resetGame}>Reiniciar el juego</button>
+      <ResetButton resetGame={resetGame}/>
       <section className="game">
         {board.map((board, index) => {
           return (

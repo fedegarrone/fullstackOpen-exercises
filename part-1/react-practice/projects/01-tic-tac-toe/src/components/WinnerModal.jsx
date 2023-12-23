@@ -1,3 +1,4 @@
+import { ResetButton } from './ResetButton.jsx';
 import { Square } from './Square.jsx'
   
 export function WinnerModal({ winner, resetGame }) 
@@ -12,7 +13,7 @@ export function WinnerModal({ winner, resetGame })
         <header className="win">{winner && <Square>{winner}</Square>}</header>
 
         <footer>
-          <button onClick={resetGame}>Empezar de nuevo</button>
+          <ResetButton resetGame={resetGame}/>
         </footer>
       </div>
     </section>
