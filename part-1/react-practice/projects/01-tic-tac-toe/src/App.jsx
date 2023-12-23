@@ -1,6 +1,6 @@
 import { useState } from "react";
 import confetti from 'canvas-confetti'
-import { TURNS,WINNER_COMBOS } from "./constants/constants.js";
+import { TURNS, WINNER_COMBOS } from "./constants/constants.js";
 import { Square } from "./components/Square.jsx";
 import { WinnerModal } from "./components/WinnerModal.jsx";
 import { ResetButton } from "./components/ResetButton.jsx";
@@ -12,27 +12,27 @@ function App() {
     if (boardFromStorage) return JSON.parse(boardFromStorage)
     return Array(9).fill(null)
   });
-  
+
   const [turn, setTurn] = useState(() => {
     const turnFromStorage = window.localStorage.getItem('turn')
     return (turnFromStorage) ?? TURNS.X
   })
-  
+
   const [winner, setWinner] = useState(null)
-  
+
   const checkEndGame = (boardToCheck) => {
-    return boardToCheck.every((square)=>square !== null)
+    return boardToCheck.every((square) => square !== null)
   }
 
   const checkWinner = (boardToCheck) => {
-    for (const combo of  WINNER_COMBOS) {
+    for (const combo of WINNER_COMBOS) {
       const [a, b, c] = combo
       if (
         boardToCheck[a] &&
         boardToCheck[a] === boardToCheck[b] &&
         boardToCheck[a] === boardToCheck[c]
       ) {
-          return (boardToCheck[a])
+        return (boardToCheck[a])
       }
     }
     return null
@@ -52,7 +52,7 @@ function App() {
     window.localStorage.setItem('turn', newTurn)
 
     const newWinner = checkWinner(newBoard)
-    
+
     if (newWinner) {
       setWinner(newWinner)
       confetti()
@@ -73,7 +73,7 @@ function App() {
   return (
     <main className="board">
       <h1>Tic Tac Toe</h1>
-      <ResetButton resetGame={resetGame}/>
+      <ResetButton resetGame={resetGame} />
       <section className="game">
         {board.map((board, index) => {
           return (
@@ -90,7 +90,7 @@ function App() {
       </section>
 
       <section>
-        <WinnerModal winner={winner} resetGame={resetGame}/>
+        <WinnerModal winner={winner} resetGame={resetGame} />
       </section>
     </main>
   );
